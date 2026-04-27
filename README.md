@@ -1,4 +1,4 @@
-# FourInARowBattle
+﻿# FourInARowBattle
 
 A minimal standalone web project for 6x6 Four-in-a-Row (Connect Four style) Human/AI and AI/AI battles.
 
@@ -42,4 +42,3 @@ Start manually (optional):
   - `py -3.11 -m venv .venv`
   - `.venv\Scripts\python -m pip install -U pip`
   - `.venv\Scripts\python -m pip install -r requirements.txt`
-

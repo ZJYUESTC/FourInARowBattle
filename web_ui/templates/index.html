@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>四子棋对战平台</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header card">
+        <h1 id="titleText">四子棋对战平台</h1>
+        <p id="subtitleText">支持人机对战与机机对战，支持 AlphaZero 与 API 大模型。</p>
+      </header>
+
+      <section class="card panel">
+        <div class="grid two-col">
+          <div class="row">
+            <label id="langLabel" for="lang">语言 / Language</label>
+            <select id="lang">
+              <option value="zh" selected>中文</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label id="matchModeLabel" for="matchMode">对战模式</label>
+            <select id="matchMode">
+              <option value="human_vs_ai" selected id="modeHumanVsAiOpt">人机对战</option>
+              <option value="ai_vs_ai" id="modeAiVsAiOpt">机机对战</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid two-col">
+          <div class="row">
+            <label id="apiSourceLabel">API Source</label>
+            <div id="apiSourceText">DashScope Compatible API (Server Default Key)</div>
+          </div>
+          <div class="row actions mini-actions">
+            <button id="loadModelsBtn">加载 API 模型列表</button>
+            <span id="modelLoadInfo" class="hint"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="humanVsAiPanel" class="card panel">
+        <h2 id="humanVsAiTitle">人机对战设置</h2>
+        <div class="grid two-col">
+          <div class="row">
+            <label id="humanSideLabel" for="humanSide">人类执子</label>
+            <select id="humanSide">
+              <option value="black" selected id="humanSideBlackOpt">黑棋先手</option>
+              <option value="white" id="humanSideWhiteOpt">白棋后手</option>
+              <option value="random" id="humanSideRandomOpt">随机</option>
+            </select>
+          </div>
+          <div class="row">
+            <label id="humanAiKindLabel" for="humanAiKind">机器人类型</label>
+            <select id="humanAiKind">
+              <option value="alphazero" selected id="agentAlphaOpt1">AlphaZero</option>
+              <option value="llm" id="agentLlmOpt1">LLM API</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label id="humanAiModelLabel" for="humanAiModel">机器人模型名（LLM）</label>
+          <select id="humanAiModel"></select>
+        </div>
+      </section>
+
+      <section id="aiVsAiPanel" class="card panel hidden">
+        <h2 id="aiVsAiTitle">机机对战设置</h2>
+
+        <div class="sub-card">
+          <h3 id="p1Title">玩家1（黑棋）</h3>
+          <div class="grid two-col">
+            <div class="row">
+              <label id="ai1KindLabel" for="ai1Kind">类型</label>
+              <select id="ai1Kind">
+                <option value="alphazero" selected id="agentAlphaOpt2">AlphaZero</option>
+                <option value="llm" id="agentLlmOpt2">LLM API</option>
+              </select>
+            </div>
+            <div class="row">
+              <label id="ai1ModelLabel" for="ai1Model">模型名（LLM）</label>
+              <select id="ai1Model"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-card">
+          <h3 id="p2Title">玩家2（白棋）</h3>
+          <div class="grid two-col">
+            <div class="row">
+              <label id="ai2KindLabel" for="ai2Kind">类型</label>
+              <select id="ai2Kind">
+                <option value="alphazero" selected id="agentAlphaOpt3">AlphaZero</option>
+                <option value="llm" id="agentLlmOpt3">LLM API</option>
+              </select>
+            </div>
+            <div class="row">
+              <label id="ai2ModelLabel" for="ai2Model">模型名（LLM）</label>
+              <select id="ai2Model"></select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card panel">
+        <div class="actions">
+          <button id="newGameBtn">新对局</button>
+          <button id="undoBtn">悔棋</button>
+          <button id="aiStepBtn">AI 走一步</button>
+          <button id="autoPlayBtn">自动对弈</button>
+          <button id="stopAutoBtn" class="secondary">停止自动</button>
+        </div>
+      </section>
+
+      <section class="card status-panel">
+        <div id="statusLine" class="status-line">Loading...</div>
+        <div id="messageLine" class="message-line"></div>
+      </section>
+
+      <section class="board-and-log">
+        <section class="card board-card">
+          <div id="board" class="board" aria-label="四子棋棋盘"></div>
+        </section>
+
+        <section class="card log-card">
+          <h2 id="thinkingTitle">机器思考过程</h2>
+          <div id="thinkingPanel" class="thinking-panel"></div>
+        </section>
+      </section>
+
+      <section class="card help">
+        <h2 id="notesTitle">说明</h2>
+        <ul>
+          <li id="note1">AlphaZero 会显示 Top5 候选落子与置信度。</li>
+          <li id="note2">LLM 会显示原始输出全文；若有 reasoning/deep-thinking 字段也会显示。</li>
+          <li id="note3">当前棋盘固定为 6x6，胜利条件为 4 连。</li>
+        </ul>
+      </section>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
