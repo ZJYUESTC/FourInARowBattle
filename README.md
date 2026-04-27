@@ -1,4 +1,4 @@
-﻿# FourInARowBattle
+# FourInARowBattle
 
 A minimal standalone web project for 6x6 Four-in-a-Row (Connect Four style) Human/AI and AI/AI battles.
 
@@ -42,3 +42,16 @@ Start manually (optional):
   - `py -3.11 -m venv .venv`
   - `.venv\Scripts\python -m pip install -U pip`
   - `.venv\Scripts\python -m pip install -r requirements.txt`
+
+## AlphaZero Source Attribution
+
+This project reuses and adapts parts of the open-source AlphaZero Gomoku implementation by **Junxiao Song**:
+
+- Repository: `junxiaosong/AlphaZero_Gomoku`
+- Link: [https://github.com/junxiaosong/AlphaZero_Gomoku](https://github.com/junxiaosong/AlphaZero_Gomoku)
+- Reused/adapted files in this project include:
+  - `game.py`
+  - `mcts_alphaZero.py`
+  - `policy_value_net_pytorch.py`
+
+Please keep the original author/license notice when redistributing or publishing derivative work.
